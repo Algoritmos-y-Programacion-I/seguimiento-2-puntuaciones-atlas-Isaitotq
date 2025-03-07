@@ -1,8 +1,8 @@
 // Análisis (completar)
-// Descripción del programa:
-// Entradas:
-// Salidas:
-// Ejemplo:
+// Descripción del programa: el programa permite registrar, ingresar y calcular los puntajes de los jugadores que son ingresados :)
+// Entradas:las entradas son la cantidad max de jugadores, catidad de rondas, y el de cada jugador en cada ronda
+// Salidas: el puntaje total y el promedio de cada jugador a lo largo de las rondas
+// Ejemplo: El programa mostrara: Resultados finales: Jugador 1 / Puntaje total: 120 Jugador 2 / Puntaje total: 170 Jugador 3 / Puntaje total: 100
 
 package ui; // No olvidar especificar el paquete / carpeta de nuestro programa
 
@@ -14,21 +14,24 @@ public class AtlasPuntuaciones {
     private Scanner escaner;
 
     // Declaración de nuestras constantes a utilizar
-    private static final int MAX_JUGADORES = 10; // Máximo de jugadores
-    private static final int MAX_RONDAS = 5; // Máximo de rondas
+    private static final int MAX_JUGADORES = 10; 
+    private static final int MAX_RONDAS = 5; 
+
 
     private AtlasPuntuaciones() {
         escaner = new Scanner(System.in);
     }
 
     public void run() {
-        // Obtenemos el número de jugadores y rondas
-        int numJugadores = obtenerNumero("jugadores", MAX_JUGADORES); // Usamos azúcar sintáctico para simplificar
-        int numRondas = obtenerNumero("rondas", MAX_RONDAS); // Usamos azúcar sintáctico para simplificar
+       
+        int numJugadores = obtenerNumero("jugadores", MAX_JUGADORES); 
+        int numRondas = obtenerNumero("rondas", MAX_RONDAS); 
 
-        String[] jugadores = crearJugadores(numJugadores); // Creamos la lista de jugadores
-        int[] puntajes = registrarPuntajes(jugadores, numRondas); // Registramos los puntajes
-        mostrarResultados(jugadores, puntajes); // Mostramos los resultados finales
+		//aqui use azucar sintactico profe:3
+
+        String[] jugadores = crearJugadores(numJugadores); 
+        int[] puntajes = registrarPuntajes(jugadores, numRondas); 
+        mostrarResultados(jugadores, puntajes, numRondas); 
     }
 
     public static void main(String[] args) {
@@ -36,57 +39,62 @@ public class AtlasPuntuaciones {
         mainApp.run();
     }
 
-    // Método para obtener el número de jugadores o rondas
-    public int obtenerNumero(String tipo, int max) {
-        int cantidad;
-        do {
-          
-            System.out.println("Por favor ingrese la cantidad de " + tipo + " (Max " + max + ")");
-       
-            cantidad = escaner.nextInt(); // Leemos la cantidad
-            if (cantidad < 1 || cantidad > max) { // Validamos la entrada
-                System.out.println("Invalido. Debe ser entre 1 y " + max + ".");
-            }
-        } while (cantidad < 1 || cantidad > max); // Repetimos hasta que la entrada sea válida
-        return cantidad; // Retornamos la cantidad válida
-    }
+// método para obtener el número de jugadores o rondas
+public int obtenerNumero(String tipo, int max) {
+    int cantidad = 0;
+    boolean entradaValida = false;
 
-    // Método para crear un arreglo con los nombres de los jugadores
-    public String[] crearJugadores(int numJugadores) {
-        String[] jugadores = new String[numJugadores]; // Creamos un arreglo para los jugadores
-        for (int i = 0; i < numJugadores; i++) {
-            jugadores[i] = "Jugador " + (i + 1); // Asignamos nombres a los jugadores
+    while (!entradaValida) {
+        System.out.println("porfa ingrese la cantidad de " + tipo + " (max " + max + ")");
+        cantidad = escaner.nextInt(); 
+        if (cantidad >= 1 && cantidad <= max) {
+            entradaValida = true; 
+        } else {
+            System.out.println("invalido. debe ser entre 1 y " + max + ".");
         }
-        return jugadores; // Retornamos el arreglo de jugadores
+    }
+    return cantidad;
+}
+
+    // los nombres de los jugadores :o
+    public String[] crearJugadores(int numJugadores) {
+        String[] jugadores = new String[numJugadores]; 
+        for (int i = 0; i < numJugadores; i++) {
+            jugadores[i] = "jugador " + (i + 1); 
+        }
+        return jugadores; 
+		// Retornamos el arreglo de jugadores
     }
 
     // Método para registrar los puntajes de cada jugador
-    public int[] registrarPuntajes(String[] jugadores, int numRondas) {
-        int[] puntajes = new int[jugadores.length]; // Creamos un arreglo para los puntajes
+
+   public int[] registrarPuntajes(String[] jugadores, int numRondas) {
+        int[] puntajes = new int[jugadores.length]; 
         for (int i = 0; i < jugadores.length; i++) {
-            int totalPuntaje = 0; // Inicializamos el puntaje total del jugador
+            int totalPuntaje = 0; 
             for (int j = 0; j < numRondas; j++) {
-                int puntaje;
-                do {
-                    System.out.println("Ingrese el puntaje de " + jugadores[i] + " en la ronda " + (j + 1) + " (0 - 100)");
-                    puntaje = escaner.nextInt(); // Leemos el puntaje
-                    if (puntaje < 0 || puntaje > 100) { // Validamos el puntaje
-                        System.out.println("Invalido. Debe ser entre 0 y 100.");
+                int puntaje = -1; 
+                while (puntaje < 0 || puntaje > 100) {
+                    System.out.println("ingrese el puntaje de " + jugadores[i] + " en la ronda " + (j + 1) + " (0 - 100)");
+                    puntaje = escaner.nextInt(); 
+                    if (puntaje < 0 || puntaje > 100) { 
+                        System.out.println("invalido. Debe ser entre 0 y 100.");
                     }
-                } while (puntaje < 0 || puntaje > 100); // Repetimos hasta que el puntaje sea válido
-                totalPuntaje += puntaje; // Sumamos el puntaje a totalPuntaje
+                }
+                totalPuntaje += puntaje; 
             }
-            puntajes[i] = totalPuntaje; // Guardamos el puntaje total del jugador
+            puntajes[i] = totalPuntaje; 
         }
-        return puntajes; // Retornamos el arreglo de puntajes
+        return puntajes; 
     }
 
-    // Método para mostrar los resultados finales
-    public void mostrarResultados(String[] jugadores, int[] puntajes) {
-        System.out.println("Resultados finales:");
+    // metodo para mostrar los resultados finales
+    public void mostrarResultados(String[] jugadores, int[] puntajes, int numRondas) {
+        System.out.println("resultados finales:");
         for (int i = 0; i < jugadores.length; i++) {
-            // Imprimimos el nombre del jugador y su puntaje total
-            System.out.println(jugadores[i] + " / Puntaje total: " + puntajes[i]);
+            double promedio = (double) puntajes[i] / numRondas; 
+           
+            System.out.printf("%s / puntaje total: %d / promedio: %.2f%n", jugadores[i], puntajes[i], promedio);
         }
     }
 }
