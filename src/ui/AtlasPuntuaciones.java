@@ -40,9 +40,9 @@ public class AtlasPuntuaciones {
     public int obtenerNumero(String tipo, int max) {
         int cantidad;
         do {
-            System.out.println("---------------------------------------------------");
+          
             System.out.println("Por favor ingrese la cantidad de " + tipo + " (Max " + max + ")");
-            System.out.println("---------------------------------------------------");
+       
             cantidad = escaner.nextInt(); // Leemos la cantidad
             if (cantidad < 1 || cantidad > max) { // Validamos la entrada
                 System.out.println("Invalido. Debe ser entre 1 y " + max + ".");
