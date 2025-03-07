@@ -2,7 +2,7 @@
 // Descripción del programa: el programa permite registrar, ingresar y calcular los puntajes de los jugadores que son ingresados :)
 // Entradas:las entradas son la cantidad max de jugadores, catidad de rondas, y el de cada jugador en cada ronda
 // Salidas: el puntaje total y el promedio de cada jugador a lo largo de las rondas
-// Ejemplo: El programa mostrara: Resultados finales: Jugador 1 / Puntaje total: 120 Jugador 2 / Puntaje total: 170 Jugador 3 / Puntaje total: 100
+// Ejemplo: resultados finales: jugador 1 / puntaje total: 330 / promedio: 82,50 jugador 2 / puntaje total: 250 / promedio: 62,50 jugador 3 / puntaje total: 350 / promedio: 87,50
 
 package ui; // No olvidar especificar el paquete / carpeta de nuestro programa
 
@@ -63,10 +63,10 @@ public int obtenerNumero(String tipo, int max) {
             jugadores[i] = "jugador " + (i + 1); 
         }
         return jugadores; 
-		// Retornamos el arreglo de jugadores
+		// retornamos el arreglo de jugadores
     }
 
-    // Método para registrar los puntajes de cada jugador
+    // metodo uwu para registrar los puntajes de cada jugador
 
    public int[] registrarPuntajes(String[] jugadores, int numRondas) {
         int[] puntajes = new int[jugadores.length]; 
